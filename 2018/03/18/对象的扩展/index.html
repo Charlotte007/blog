@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="属性的简洁表示法方法简写1234567891011const obj = &amp;#123;  method() &amp;#123;    return &amp;quot;Hello!&amp;quot;;  &amp;#125;&amp;#125;;// 等同于const obj = &amp;#123;  method: function() &amp;#123;    return &amp;quot;Hello!&amp;quot;;  &amp;#125;&amp;#125;">
+<meta name="description" content="属性的简洁表示法方法简写1234567891011const obj = &amp;#123;  method() &amp;#123;    return &quot;Hello!&quot;;  &amp;#125;&amp;#125;;// 等同于const obj = &amp;#123;  method: function() &amp;#123;    return &quot;Hello!&quot;;  &amp;#125;&amp;#125;; 属性简写 let birth = &apos;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="对象的扩展">
 <meta property="og:url" content="https://charlotte007.github.io/blog/2018/03/18/对象的扩展/index.html">
 <meta property="og:site_name" content="TigerZ的个人技术博客">
-<meta property="og:description" content="属性的简洁表示法方法简写1234567891011const obj = &amp;#123;  method() &amp;#123;    return &amp;quot;Hello!&amp;quot;;  &amp;#125;&amp;#125;;// 等同于const obj = &amp;#123;  method: function() &amp;#123;    return &amp;quot;Hello!&amp;quot;;  &amp;#125;&amp;#125;">
+<meta property="og:description" content="属性的简洁表示法方法简写1234567891011const obj = &amp;#123;  method() &amp;#123;    return &quot;Hello!&quot;;  &amp;#125;&amp;#125;;// 等同于const obj = &amp;#123;  method: function() &amp;#123;    return &quot;Hello!&quot;;  &amp;#125;&amp;#125;; 属性简写 let birth = &apos;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-18T15:21:36.875Z">
+<meta property="og:updated_time" content="2018-03-20T16:00:10.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对象的扩展">
-<meta name="twitter:description" content="属性的简洁表示法方法简写1234567891011const obj = &amp;#123;  method() &amp;#123;    return &amp;quot;Hello!&amp;quot;;  &amp;#125;&amp;#125;;// 等同于const obj = &amp;#123;  method: function() &amp;#123;    return &amp;quot;Hello!&amp;quot;;  &amp;#125;&amp;#125;">
+<meta name="twitter:description" content="属性的简洁表示法方法简写1234567891011const obj = &amp;#123;  method() &amp;#123;    return &quot;Hello!&quot;;  &amp;#125;&amp;#125;;// 等同于const obj = &amp;#123;  method: function() &amp;#123;    return &quot;Hello!&quot;;  &amp;#125;&amp;#125;; 属性简写 let birth = &apos;">
 
 
 
@@ -299,15 +299,15 @@
       
 
       
-        <h3 id="属性的简洁表示法"><a href="#属性的简洁表示法" class="headerlink" title="属性的简洁表示法"></a>属性的简洁表示法</h3><p>方法简写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">  method() &#123;</span><br><span class="line">    return &quot;Hello!&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">// 等同于</span><br><span class="line">const obj = &#123;</span><br><span class="line">  method: function() &#123;</span><br><span class="line">    return &quot;Hello!&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="属性的简洁表示法"><a href="#属性的简洁表示法" class="headerlink" title="属性的简洁表示法"></a>属性的简洁表示法</h3><p>方法简写<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  method() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Hello!"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  method: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Hello!"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>属性简写</p>
-<pre><code class="es6">let birth = &apos;2000/01/01&apos;;
-const Person = {
-  name: &apos;张三&apos;,
-  //等同于birth: birth
+<pre><code class="javascript"><span class="keyword">let</span> birth = <span class="string">'2000/01/01'</span>;
+<span class="keyword">const</span> Person = {
+  name: <span class="string">'张三'</span>,
+  <span class="comment">//等同于birth: birth</span>
   birth,
-  // 等同于hello: function ()...
-  hello() { console.log(&apos;我的名字是&apos;, this.name); }
+  <span class="comment">// 等同于hello: function ()...</span>
+  hello() { <span class="built_in">console</span>.log(<span class="string">'我的名字是'</span>, <span class="keyword">this</span>.name); }
 };
 </code></pre>
 <h3 id="super-关键字"><a href="#super-关键字" class="headerlink" title="super 关键字"></a>super 关键字</h3><p>this关键字总是指向函数所在的当前对象，ES6 又新增了另一个类似的关键字super，指向当前对象的原型对象;注意，super关键字表示原型对象时，只能用在对象的方法之中，用在其他地方都会报错。</p>
