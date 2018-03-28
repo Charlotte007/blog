@@ -232,6 +232,251 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://charlotte007.github.io/blog/blog/2018/03/28/ES5中的原型和原型链/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TigerZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TigerZ的个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018/03/28/ES5中的原型和原型链/" itemprop="url">ES5中的原型和原型链</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T22:05:14+08:00">
+                2018-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://charlotte007.github.io/blog/blog/2018/03/27/图解ES5的原型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TigerZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TigerZ的个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018/03/27/图解ES5的原型/" itemprop="url">图解ES5的原型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T22:57:31+08:00">
+                2018-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="原型的定义"><a href="#原型的定义" class="headerlink" title="原型的定义"></a>原型的定义</h3><p>每个函数都有一个prototype的属性，他是一个指针，指向一个对象，这个对象中包含<code>特定类型</code>的所有<code>实例共享</code>的属性和方法;简而言之就是：每个函数自带的包含<code>特定类型</code>的所有<code>实例共享</code>的属性和方法的对象；</p>
+<h3 id="原型的实例说明"><a href="#原型的实例说明" class="headerlink" title="原型的实例说明"></a>原型的实例说明</h3><p>函数自带的包含<code>特定类型</code>的所有<code>实例共享</code>的属性和方法的对象；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造函数 Person, 原型模式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 空</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 新增原型对象</span></span><br><span class="line">Person.prototype.name = <span class="string">'TigerZ'</span>;</span><br><span class="line">Person.prototype.age = <span class="number">18</span>;</span><br><span class="line">Person.prototype.sayHello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hello world'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建实例</span></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person1 == person2); <span class="comment">// false 不同的存放位置</span></span><br><span class="line"><span class="built_in">console</span>.log(person1.name); <span class="comment">// TigerZ</span></span><br><span class="line"><span class="built_in">console</span>.log(person2.name); <span class="comment">// TigerZ</span></span><br><span class="line"><span class="comment">// 对象属性的查找 -&gt;  实例 -&gt; 构造函数 -&gt; 原型 -&gt; 原型链</span></span><br><span class="line">person1.name = <span class="string">'jack'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person1.name); <span class="comment">// jack      -&gt; 来自 实例</span></span><br><span class="line"><span class="built_in">console</span>.log(person2.name); <span class="comment">// TigerZ    -&gt; 来自 原型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// constructor -&gt; 函数原型的属性 </span></span><br><span class="line"><span class="built_in">console</span>.log(Person.prototype.constructor === Person ); <span class="comment">// true 指针指向一样</span></span><br><span class="line"><span class="comment">// __proto__   -&gt; 实例对象的属性</span></span><br><span class="line"><span class="built_in">console</span>.log(person1.__proto__ === Person.prototype); <span class="comment">// true 指针指向一样</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Person.prototype);<span class="comment">// 1:</span></span><br><span class="line"><span class="built_in">console</span>.log(Person.prototype.__proto__ === <span class="built_in">Object</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.__proto__); <span class="comment">// 原型链的终点，也就是对象的起始点，所以说 null生万物</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    1: Object</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        constructor: ƒ Person() // 构造函数 Person的内部构造 arguments caller prototype __proto__</span></span><br><span class="line"><span class="comment">        __proto__:&#123;  // 指向 Object 原型</span></span><br><span class="line"><span class="comment">            constructor: f Object       // constructor 说明我是谁，是那种类型的实例</span></span><br><span class="line"><span class="comment">            hasOwnProperty: ƒ hasOwnProperty()  // Boolean 用于检测实例中是否包含该属性</span></span><br><span class="line"><span class="comment">            isPrototypeOf: ƒ isPrototypeOf()    //</span></span><br><span class="line"><span class="comment">            propertyIsEnumerable: ƒ propertyIsEnumerable()</span></span><br><span class="line"><span class="comment">            toLocaleString: ƒ toLocaleString()</span></span><br><span class="line"><span class="comment">            toString: ƒ toString()</span></span><br><span class="line"><span class="comment">            valueOf: ƒ valueOf()</span></span><br><span class="line"><span class="comment">            __defineGetter__: ƒ __defineGetter__()</span></span><br><span class="line"><span class="comment">            __defineSetter__: ƒ __defineSetter__()</span></span><br><span class="line"><span class="comment">            __lookupGetter__: ƒ __lookupGetter__()</span></span><br><span class="line"><span class="comment">            __lookupSetter__: ƒ __lookupSetter__()</span></span><br><span class="line"><span class="comment">            get __proto__: ƒ __proto__()</span></span><br><span class="line"><span class="comment">            set __proto__: ƒ __proto__()</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="理解原型对象-prototype"><a href="#理解原型对象-prototype" class="headerlink" title="理解原型对象 prototype"></a>理解原型对象 prototype</h3><p> 1、原型对象会在创建新函数的时候，就会为该函数创建一个prototype属性，指向这个函数的原型对象；默认情况下都会自动回去一个 constructor的属性，指向原型所在的函数；至于其他的方法，默认是从 Object继承而来；<br> 2、ES5中可以通过 指针[[Prototype]],访问函数的原型，但是ES5中没有标准化，只有 FireFox，Safari，Chrome在每个对象上支持一个__proto__属性,用于实例访问构造函数的原型对象<br> <code>需要明确的是，__proto__是链接实例和构造函数原型（prototype）的，而不是实例和构造函数之间</code></p>
+<h3 id="原型的图解"><a href="#原型的图解" class="headerlink" title="原型的图解"></a>原型的图解</h3><img src="/blog/2018/03/27/图解ES5的原型/构造函数Person.png" title="[构造函数Person]">
+<h3 id="原型链的定义"><a href="#原型链的定义" class="headerlink" title="原型链的定义"></a>原型链的定义</h3><p>原型链是作为继承的主要方法，基本思想就是利用原型让一个引用类型去继承另一个应用类型的属性和方法；就是一个构造函数（父）的实例是另一个构造函数（子）的原型，（SonType.prototype = new FatherType() =&gt; SonType.prototype.__proto__ === FatherType.prototype ）,通过层层递进 重写原型对象,实现继承；原型链是依赖于__proto__，而不是prototype。所以可以简单理解为：函数继承中，链接所有层级构造函数原型和实例的链条，称之为原型链</p>
+<h3 id="原型链的实例说明"><a href="#原型链的实例说明" class="headerlink" title="原型链的实例说明"></a>原型链的实例说明</h3><h3 id="原型和原型链的关系图解"><a href="#原型和原型链的关系图解" class="headerlink" title="原型和原型链的关系图解"></a>原型和原型链的关系图解</h3><img src="/blog/2018/03/27/图解ES5的原型/原型链.png" title="[原型链]">
+<h3 id="构造函数Function和-构造函数Object"><a href="#构造函数Function和-构造函数Object" class="headerlink" title="构造函数Function和 构造函数Object"></a>构造函数Function和 构造函数Object</h3><img src="/blog/2018/03/27/图解ES5的原型/prototype和__proto__.jpg" title="[原型和原型链]">
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://charlotte007.github.io/blog/blog/2018/03/18/对象的扩展/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -947,7 +1192,7 @@
 2、const命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。
 3、const声明的常量，也与let一样不可重复声明。
 </code></pre><p>常量声明本质<br>    const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动，因此，将一个对象声明为常量必须非常小心。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5 中常量的写法</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(<span class="built_in">window</span>, <span class="string">"PI2"</span>, &#123;</span><br><span class="line">    value: <span class="number">3.1415926</span>,</span><br><span class="line">    writable: <span class="literal">false</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.PI2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 的常量写法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PI = <span class="number">3.1415926</span></span><br><span class="line"><span class="built_in">console</span>.log(PI)</span><br><span class="line"></span><br><span class="line">PI = <span class="number">4</span> <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5 中常量的写法</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(<span class="built_in">window</span>, <span class="string">"PI2"</span>, &#123;</span><br><span class="line">    value: <span class="number">3.1415926</span>,</span><br><span class="line">    writable: <span class="literal">false</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.PI2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 的常量写</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PI = <span class="number">3.1415926</span></span><br><span class="line"><span class="built_in">console</span>.log(PI)</span><br><span class="line"></span><br><span class="line">PI = <span class="number">4</span> <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
 <h3 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h3><p>为什么需要块级作用域？</p>
 <pre><code>1. 第一种场景，内层变量可能会覆盖外层变量。
 2. 第二种场景，用来计数的循环变量泄露为全局变量。
@@ -1162,7 +1407,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1175,7 +1420,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
