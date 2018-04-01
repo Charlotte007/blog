@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ES6," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="扩展运算符数组扩展的方法Array.from()">
+<meta name="description" content="扩展运算符扩展运算符（spread）是三个点（…）形式为…Arr。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。区分：rest： 函数扩展，形式 …keyname,用于获取函数的剩余参数，keyname为数组类型spread：数组扩展，形式…Arr，将一个数组转为用逗号分隔的参数序列 12345678910111213141516171819// 数组拆分console.lo">
+<meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数组的扩展">
 <meta property="og:url" content="https://charlotte007.github.io/blog/2018/03/18/数组的扩展/index.html">
 <meta property="og:site_name" content="TigerZ的个人技术博客">
-<meta property="og:description" content="扩展运算符数组扩展的方法Array.from()">
+<meta property="og:description" content="扩展运算符扩展运算符（spread）是三个点（…）形式为…Arr。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。区分：rest： 函数扩展，形式 …keyname,用于获取函数的剩余参数，keyname为数组类型spread：数组扩展，形式…Arr，将一个数组转为用逗号分隔的参数序列 12345678910111213141516171819// 数组拆分console.lo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-18T15:12:32.430Z">
+<meta property="og:updated_time" content="2018-04-01T13:37:41.685Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组的扩展">
-<meta name="twitter:description" content="扩展运算符数组扩展的方法Array.from()">
+<meta name="twitter:description" content="扩展运算符扩展运算符（spread）是三个点（…）形式为…Arr。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。区分：rest： 函数扩展，形式 …keyname,用于获取函数的剩余参数，keyname为数组类型spread：数组扩展，形式…Arr，将一个数组转为用逗号分隔的参数序列 12345678910111213141516171819// 数组拆分console.lo">
 
 
 
@@ -186,6 +187,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -299,8 +310,17 @@
       
 
       
-        <h3 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h3><h3 id="数组扩展的方法"><a href="#数组扩展的方法" class="headerlink" title="数组扩展的方法"></a>数组扩展的方法</h3><pre><code>Array.from()
-</code></pre>
+        <h3 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h3><p>扩展运算符（spread）是三个点（…）形式为…Arr。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的<code>参数序列</code>。<br>区分：<br>rest： 函数扩展，形式 …keyname,用于获取函数的剩余参数，keyname为数组类型<br>spread：数组扩展，形式…Arr，将一个数组转为用逗号分隔的<code>参数序列</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组拆分</span></span><br><span class="line"><span class="built_in">console</span>.log(...[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="comment">// 1 2 3</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>, ...[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], <span class="number">5</span>)</span><br><span class="line"><span class="comment">// 1 2 3 4 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 类数组的转化</span></span><br><span class="line">[...document.querySelectorAll(<span class="string">'div'</span>)</span><br><span class="line"><span class="comment">// [&lt;div&gt;, &lt;div&gt;, &lt;div&gt;]    // Array</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 代替  fn.apply(obj,argsArr)</span></span><br><span class="line"><span class="comment">// ES5 的写法</span></span><br><span class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, [<span class="number">14</span>, <span class="number">3</span>, <span class="number">77</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 的写法</span></span><br><span class="line"><span class="built_in">Math</span>.max(...[<span class="number">14</span>, <span class="number">3</span>, <span class="number">77</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="built_in">Math</span>.max(<span class="number">14</span>, <span class="number">3</span>, <span class="number">77</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="扩展运算符的应用"><a href="#扩展运算符的应用" class="headerlink" title="扩展运算符的应用"></a>扩展运算符的应用</h4><p>1、复制数组<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = a1.concat();</span><br><span class="line">a2[<span class="number">0</span>] = <span class="number">2</span>;</span><br><span class="line">a1 <span class="comment">// [1, 2]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="comment">// 写法一</span></span><br><span class="line"><span class="keyword">const</span> a2 = [...a1];</span><br><span class="line"><span class="comment">// 写法二</span></span><br><span class="line"><span class="keyword">const</span> [...a2] = a1;</span><br></pre></td></tr></table></figure></p>
+<p>2、合并数组<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>].concat(more)</span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, ...more]</span><br></pre></td></tr></table></figure></p>
+<p>3、与解构赋值结合<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line">a = list[<span class="number">0</span>], rest = list.slice(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line">[a, ...rest] = list</span><br><span class="line"><span class="comment">// 其他场景 ！！！ 如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错。</span></span><br><span class="line"><span class="keyword">const</span> [first, ...rest] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">first <span class="comment">// 1</span></span><br><span class="line">rest  <span class="comment">// [2, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [first, ...rest] = [];</span><br><span class="line">first <span class="comment">// undefined</span></span><br><span class="line">rest  <span class="comment">// []</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [first, ...rest] = [<span class="string">"foo"</span>];</span><br><span class="line">first  <span class="comment">// "foo"</span></span><br><span class="line">rest   <span class="comment">// []</span></span><br></pre></td></tr></table></figure></p>
+<p>4、字符串<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[...<span class="string">'hello'</span>]</span><br><span class="line"><span class="comment">// [ "h", "e", "l", "l", "o" ]</span></span><br></pre></td></tr></table></figure></p>
+<p>5、实现了 Iterator 接口的对象 （接触后，在理解）<br>6、Map 和 Set 结构，Generator 函数（接触后，在理解）</p>
+<h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h3><p>Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrayLike = &#123;</span><br><span class="line">    <span class="string">'0'</span>: <span class="string">'a'</span>,</span><br><span class="line">    <span class="string">'1'</span>: <span class="string">'b'</span>,</span><br><span class="line">    <span class="string">'2'</span>: <span class="string">'c'</span>,</span><br><span class="line">    length: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5的写法</span></span><br><span class="line"><span class="keyword">var</span> arr1 = [].slice.call(arrayLike); <span class="comment">// ['a', 'b', 'c']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6的写法</span></span><br><span class="line"><span class="keyword">let</span> arr2 = <span class="built_in">Array</span>.from(arrayLike); <span class="comment">// ['a', 'b', 'c']</span></span><br></pre></td></tr></table></figure></p>
+<p>如果参数是一个真正的数组，Array.from会返回一个一模一样的新数组。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])  <span class="comment">//  return newArr</span></span><br><span class="line"><span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure></p>
+<p>扩展运算符（…）也可以将某些数据结构转为数组<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// NodeList对象</span></span><br><span class="line">[...document.querySelectorAll(<span class="string">'div'</span>)]</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -314,6 +334,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/ES6/" rel="tag"># ES6</a>
+          
+        </div>
       
 
       
@@ -413,7 +439,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -425,10 +451,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">2</span>
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -459,7 +485,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展运算符"><span class="nav-number">1.</span> <span class="nav-text">扩展运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组扩展的方法"><span class="nav-number">2.</span> <span class="nav-text">数组扩展的方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展运算符"><span class="nav-number">1.</span> <span class="nav-text">扩展运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展运算符的应用"><span class="nav-number">1.1.</span> <span class="nav-text">扩展运算符的应用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-from"><span class="nav-number">2.</span> <span class="nav-text">Array.from()</span></a></li></ol></div>
             
 
           </div>
@@ -546,6 +572,9 @@
 
 
 
+  
+  
+
 
 
 
@@ -582,6 +611,16 @@
   
   
     <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/three/three-waves.min.js"></script>
   
 
 
