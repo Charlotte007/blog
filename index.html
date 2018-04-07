@@ -564,7 +564,10 @@
 <ul>
 <li>对象的状态不受外界影响。Promise对象代表一个异步操作，只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态</li>
 <li>一旦状态改变，就不会再变，任何时候都可以得到这个结果</li>
-<li>链式调用，Promise.prototype.then 和 Promise.prototype.catch 方法返回promise 对象<br>5、Promise也有一些缺点：</li>
+<li>链式调用，Promise.prototype.then 和 Promise.prototype.catch 方法返回promise 对象</li>
+</ul>
+<p>5、Promise也有一些缺点：</p>
+<ul>
 <li>无法取消Promise，一旦新建它就会立即执行，无法中途取消。</li>
 <li>如果不设置回调函数，Promise内部的错误不会反应到外部。</li>
 <li>当处于未完成态时，无法得知目前进展到哪一个阶段。</li>
