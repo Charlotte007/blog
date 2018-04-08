@@ -597,7 +597,7 @@ reject函数的作用是，将Promise对象的状态从“未完成”变为“�
 <li><p>Promise.reject()<br>  Promise.reject(reason)方法也会返回一个新的 Promise 实例，该实例的状态为rejected。</p>
 </li>
 </ul>
-<h3 id="Promise进阶-Event-Loop"><a href="#Promise进阶-Event-Loop" class="headerlink" title="Promise进阶-Event Loop"></a>Promise进阶-Event Loop</h3><pre><code class="javascript"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> {
+<h2 id="Promise进阶-Event-Loop"><a href="#Promise进阶-Event-Loop" class="headerlink" title="Promise进阶-Event Loop"></a>Promise进阶-Event Loop</h2><pre><code class="javascript"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> {
     resolve(<span class="number">1</span>);
     <span class="comment">// Promise.resolve()</span>
     <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="number">2</span>));
@@ -605,6 +605,47 @@ reject函数的作用是，将Promise对象的状态从“未完成”变为“�
 }).then(<span class="function"><span class="params">value</span> =&gt;</span> <span class="built_in">console</span>.log(value));
 <span class="built_in">console</span>.log(<span class="number">4</span>);
 <span class="comment">// 执行顺序  3 4 2 1</span>
+</code></pre>
+<h3 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h3><p>JavaScript语言的一大特点就是<code>单线程</code>，也就是说，<code>同一个时间只能做一件事</code>,这样能提高效率;单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。如果前一个任务耗时很长，后一个任务就不得不一直等着。</p>
+<p>任务可以分成两种，一种是<code>同步任务（synchronous）</code>，另一种是<code>异步任务（asynchronous）</code>。同步任务指的是，在<code>主线程</code>上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务；异步任务指的是，不进入主线程、而进入”任务队列”（task queue）的任务，只有<code>&quot;任务队列&quot;通知主线程</code>，某个异步任务可以执行了，该任务才会进入主线程执行。</p>
+<p>异步执行的运行机制如下:（同步执行也是如此，因为它可以被视为没有异步任务的异步执行。）</p>
+<ol>
+<li>所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。</li>
+<li>主线程之外，还存在一个”任务队列”（task queue）。只要异步任务有了运行结果，就在”任务队列”之中放置一个事件。</li>
+<li>一旦”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。</li>
+<li>只要主线程空了，主线程不断重复上面的第三步，读取”任务队列”；</li>
+</ol>
+<h4 id="异步任务的分类"><a href="#异步任务的分类" class="headerlink" title="异步任务的分类"></a>异步任务的分类</h4><p>异步任务可以分为两类，<code>macrotask(宏任务)</code>，<code>microtask(微任务)</code></p>
+<p><em>macrotask</em> 包含：script(整体代码)、setTimeout、setInterval、I/O、UI交互事件、postMessage 、requestAnimationFrame 、MessageChannel、etImmediate(Node.js 环境)<br><em>microtask</em> 包含：Promise.then、MutaionObserver、process.nextTick(Node.js 环境)</p>
+<h3 id="Event-Loop"><a href="#Event-Loop" class="headerlink" title="Event Loop"></a>Event Loop</h3><p>主线程从<code>&quot;任务队列&quot;</code>中读取事件，这个过程是循环不断的，所以整个的这种运行机制又称为Event Loop（事件循环）。</p>
+<p>事件循环基于任务队列，EventLoop中，可以有<code>多个任务队列</code>，任务队列是任务(task)的集合，每一个任务都拥有一个任务源(task source), 同一个task source(任务源)必须放在同一个task queue(任务队列)中。</p>
+<p>事件循环中，每进行一次循环称为tick。每一次tick处理的方式规则如下：</p>
+<ol>
+<li>每一次tick(事件循环)对于任务队列是先进先出（执行最先进入任务队列的任务，所以称为队列😂）。</li>
+<li><p>每一次实践循环结束后，会优先检查microtasks(微任务)，如果存在会不断执行，清空microtasks queue。</p>
+<img src="/blog/2018/04/01/promise对象/eventloop.png" title="[图解：由上图可知，不同的任务是进入不同的任务队列执行， call stack是主线程]">
+</li>
+</ol>
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><p>注意：setTimeout，setIntervar第二个参数时间的具体含义指的是，等待进入macrotask（队列的时间），而不是等待执行的时间🕙。如果主线程的执行，发生了长时间的阻塞，那么可能会照成一种结果就是两个不同等待时间的setTimeout可能会在阻塞之后，执行会紧挨在一起</p>
+<p>将setTimeout插入macrotask queue中，setTimeout的延迟时间指的是，setTimeout插入macrotask queue的延迟时间</p>
+<pre><code class="javascript"><span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">5</span>; i++) {
+    <span class="built_in">console</span>.log(i);
+}<span class="comment">// 直接输出为0,1,2,3,4</span>
+
+<span class="keyword">for</span>( <span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">5</span>;i++) {
+    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+        <span class="built_in">console</span>.log(i);
+    },<span class="number">1000</span>*i)
+} <span class="comment">// 先输出一个 5，再每个一秒输出剩下的4个 5</span>
+
+<span class="keyword">for</span>( <span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">5</span>;i++) {
+    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>{
+        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{
+            <span class="built_in">console</span>.log(i);
+        },<span class="number">1000</span>)
+    })(i);
+}<span class="comment">// 每隔一秒输出i</span>
+
 </code></pre>
 <p>参考链接：<br><a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener">《ECMAScript 6 入门》之Promise对象</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">MDN- Promise</a><br><a href="https://segmentfault.com/a/1190000007685095" target="_blank" rel="noopener">[es6系列]学习Promise</a><br><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="noopener">阮一峰-JavaScript 运行机制详解：再谈Event Loop</a><br><a href="https://bengbu-yuezhang.github.io/2018/03/08/EventLoop/" target="_blank" rel="noopener">zhangyue-事件循环</a></p>
 
