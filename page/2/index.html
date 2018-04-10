@@ -242,6 +242,266 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://charlotte007.github.io/blog/blog/2018/03/18/变量的结构赋值/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TigerZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TigerZ的个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018/03/18/变量的结构赋值/" itemprop="url">变量的结构赋值</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-18T17:57:11+08:00">
+                2018-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="数组的解构赋值"><a href="#数组的解构赋值" class="headerlink" title="数组的解构赋值"></a>数组的解构赋值</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简单的数组解构：</span></span><br><span class="line"><span class="keyword">let</span> [a1, b1, c1] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">    <span class="comment">// a1= 1</span></span><br><span class="line">    <span class="comment">// b1= 1</span></span><br><span class="line">    <span class="comment">// c1= 1</span></span><br><span class="line"><span class="comment">// 数组模式和赋值模式统一：</span></span><br><span class="line"><span class="keyword">let</span> [a2, [b2, c2], d2] = [<span class="number">1</span>, [<span class="number">2</span>, <span class="number">3</span>], <span class="number">4</span>];</span><br><span class="line">    <span class="comment">// a2= 1</span></span><br><span class="line">    <span class="comment">// b2= 2</span></span><br><span class="line">    <span class="comment">// c2= 3</span></span><br><span class="line">    <span class="comment">// d2= 4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 解构的默认值：  如果解构不成功，变量的值就等于undefined。</span></span><br><span class="line"><span class="keyword">let</span> [a3, b3 = <span class="string">"world"</span>] = [<span class="string">'hello'</span>];</span><br><span class="line">    <span class="comment">// a3 =&gt; hello</span></span><br><span class="line">    <span class="comment">// b3 =&gt; default: world</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意 null和 undefined 的区别</span></span><br><span class="line"><span class="keyword">let</span> [a4, b4 = <span class="string">"world"</span>] = [<span class="string">'hello'</span>, <span class="literal">undefined</span>];</span><br><span class="line">    <span class="comment">// a4: hello</span></span><br><span class="line">    <span class="comment">// b4: world   (注意 undefined 表明未定义，无法覆盖默认值 )</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [a5, b5 = <span class="string">"world"</span>] = [<span class="string">'hello'</span>, <span class="literal">null</span>];</span><br><span class="line">    <span class="comment">// a4: hello</span></span><br><span class="line">    <span class="comment">// b4: null   (注意 null 表明 空值，值是 null，可以覆盖默认值 )</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 不完全解构，但可以成功</span></span><br><span class="line"><span class="keyword">let</span> [a6, b6] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">    <span class="comment">// a6: 1</span></span><br><span class="line">    <span class="comment">// b6: 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [a7, [b7], d7] = [<span class="number">1</span>, [<span class="number">2</span>, <span class="number">3</span>], <span class="number">4</span>];</span><br><span class="line">    <span class="comment">// a7: 1</span></span><br><span class="line">    <span class="comment">// b7: 2</span></span><br><span class="line">    <span class="comment">// d7: 4</span></span><br></pre></td></tr></table></figure>
+<h3 id="对象的解构赋值"><a href="#对象的解构赋值" class="headerlink" title="对象的解构赋值"></a>对象的解构赋值</h3><p>对象的属性没有次序，变量必须与属性同名，才能取到正确的值,注意解构是的 是value 而非 key,解构赋值是配合变量声明是进行的，如果变量已经声明，使用圆括号’( )’包裹已声明变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; bar, foo &#125; = &#123; <span class="attr">foo</span>: <span class="string">"aaa"</span>, <span class="attr">bar</span>: <span class="string">"bbb"</span> &#125;;</span><br><span class="line"><span class="comment">// foo  "aaa"</span></span><br><span class="line"><span class="comment">// bar "bbb"</span></span><br><span class="line"><span class="comment">// 上面的代码可以看做简写： let &#123; foo: foo, bar: bar &#125; = &#123; foo: "aaa", bar: "bbb" &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; baz &#125; = &#123; <span class="attr">foo</span>: <span class="string">"aaa"</span>, <span class="attr">bar</span>: <span class="string">"bbb"</span> &#125;;</span><br><span class="line">    <span class="comment">// baz undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果变量名与属性名不一致，必须写成下面这样。</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">first</span>: <span class="string">'hello'</span>, <span class="attr">last</span>: <span class="string">'world'</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">first</span>: f, <span class="attr">last</span>: l &#125; = obj;</span><br><span class="line">    <span class="comment">// f 'hello'</span></span><br><span class="line">    <span class="comment">// f 'world'</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">// 对象的解构也可以指定默认值。</span></span><br><span class="line"><span class="keyword">var</span> &#123; x1 = <span class="number">3</span> &#125; = &#123;&#125;;</span><br><span class="line">    <span class="comment">// x: 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123; x2, y2 = <span class="number">5</span> &#125; = &#123; <span class="attr">x</span>: <span class="number">1</span> &#125;;</span><br><span class="line">    <span class="comment">//x 1</span></span><br><span class="line">    <span class="comment">// y 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123; <span class="attr">x3</span>: y3 = <span class="number">3</span> &#125; = &#123;&#125;;</span><br><span class="line">    <span class="comment">// y:3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123; <span class="attr">x4</span>: y4 = <span class="number">3</span> &#125; = &#123; <span class="attr">x</span>: <span class="number">5</span> &#125;;</span><br><span class="line">    <span class="comment">//y 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123; <span class="attr">message</span>: msg = <span class="string">'Something went wrong'</span> &#125; = &#123;&#125;;</span><br><span class="line">    <span class="comment">//msg "Something went wrong"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果要将一个已经声明的变量用于解构赋值，必须非常小心。</span></span><br><span class="line"><span class="comment">// 错误的写法</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        let x;</span></span><br><span class="line"><span class="comment">        &#123; x &#125; = &#123; x: 1 &#125;;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"><span class="comment">// SyntaxError: syntax error</span></span><br><span class="line"><span class="comment">// 正确的写法</span></span><br><span class="line"><span class="keyword">let</span> x;</span><br><span class="line">(&#123; x &#125; = &#123; <span class="attr">x</span>: <span class="number">1</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 由于数组本质是特殊的对象，因此可以对数组进行对象属性的解构。</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> &#123; <span class="number">0</span>: first, [arr.length - <span class="number">1</span>]: last &#125; = arr;</span><br><span class="line"> <span class="comment">// first 1</span></span><br><span class="line"> <span class="comment">// last 3</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="字符串的解构赋值"><a href="#字符串的解构赋值" class="headerlink" title="字符串的解构赋值"></a>字符串的解构赋值</h3><pre><code>字符串也可以解构赋值,这是因为此时，字符串被转换成了一个类似数组的对象，因此还可以对这个类似数组的 length 属性解构赋值
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [a, b] = <span class="string">'AB'</span>;</span><br><span class="line"><span class="comment">// a : A</span></span><br><span class="line"><span class="comment">// b : B</span></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">length</span> : len&#125; = <span class="string">'hello'</span>;</span><br><span class="line"><span class="comment">// len5</span></span><br></pre></td></tr></table></figure>
+<h3 id="数值和布尔值的解构赋值"><a href="#数值和布尔值的解构赋值" class="headerlink" title="数值和布尔值的解构赋值"></a>数值和布尔值的解构赋值</h3><pre><code>解构赋值的规则是，只要等号右边的值不是对象或数组，就先将其转为对象。由于undefined和null无法转为对象，所以对它们进行解构赋值，都会报错。
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;<span class="attr">toString</span>: s&#125; = <span class="number">123</span>;</span><br><span class="line">s === <span class="built_in">Number</span>.prototype.toString <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">toString</span>: s&#125; = <span class="literal">true</span>;</span><br><span class="line">s === <span class="built_in">Boolean</span>.prototype.toString <span class="comment">// true</span></span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">prop</span>: x &#125; = <span class="literal">undefined</span>; <span class="comment">// TypeError</span></span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">prop</span>: y &#125; = <span class="literal">null</span>; <span class="comment">// TypeError</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://charlotte007.github.io/blog/blog/2018/03/18/ES6中变量声明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TigerZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TigerZ的个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018/03/18/ES6中变量声明/" itemprop="url">ES6中变量声明</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-18T11:29:37+08:00">
+                2018-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ES6的三种声明方式："><a href="#ES6的三种声明方式：" class="headerlink" title="ES6的三种声明方式："></a>ES6的三种声明方式：</h1><pre><code>1、var：variable的简写，可以理解成变量的意思;
+2、let：“让”的意思，也可以理解为一种声明的意思;
+3、const：用来声明常量的，可以简单理解为不变的量;
+</code></pre><h3 id="let局部声明"><a href="#let局部声明" class="headerlink" title="let局部声明"></a>let局部声明</h3><pre><code>1、let是局部变量声明，let声明只在区块内起作用，外部是不可以调用的；
+2、不存在变量提升 ；
+3、不可重复声明；
+</code></pre><h3 id="const-常量声明"><a href="#const-常量声明" class="headerlink" title="const 常量声明"></a>const 常量声明</h3><p>const声明一个只读的常量。一旦声明，常量的值就不能改变。</p>
+<pre><code>1、const的作用域：只在声明所在的块级作用域内有效。
+2、const命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。
+3、const声明的常量，也与let一样不可重复声明。
+</code></pre><p>常量声明本质<br>    const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动，因此，将一个对象声明为常量必须非常小心。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5 中常量的写法</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(<span class="built_in">window</span>, <span class="string">"PI2"</span>, &#123;</span><br><span class="line">    value: <span class="number">3.1415926</span>,</span><br><span class="line">    writable: <span class="literal">false</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.PI2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 的常量写</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PI = <span class="number">3.1415926</span></span><br><span class="line"><span class="built_in">console</span>.log(PI)</span><br><span class="line"></span><br><span class="line">PI = <span class="number">4</span> <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<h3 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h3><p>为什么需要块级作用域？</p>
+<pre><code>1. 第一种场景，内层变量可能会覆盖外层变量。
+2. 第二种场景，用来计数的循环变量泄露为全局变量。
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5 中作用域</span></span><br><span class="line"><span class="comment">// var</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;, i * <span class="number">1000</span>)</span><br><span class="line">&#125;<span class="comment">// 先输出一个 5，然后每间隔一秒输出 1个5，总共5个5</span></span><br><span class="line"><span class="keyword">const</span> callbacks = []</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">2</span>; i++) &#123;</span><br><span class="line">    callbacks[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i * <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.table([</span><br><span class="line">    callbacks[<span class="number">0</span>](),</span><br><span class="line">    callbacks[<span class="number">1</span>](),</span><br><span class="line">    callbacks[<span class="number">2</span>](),</span><br><span class="line">]) <span class="comment">// 6 6 6 </span></span><br><span class="line"><span class="comment">// let</span></span><br><span class="line"><span class="keyword">const</span> callbacks2 = []</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt;= <span class="number">2</span>; j++) &#123;</span><br><span class="line">    callbacks2[j] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> j * <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.table([</span><br><span class="line">    callbacks2[<span class="number">0</span>](),</span><br><span class="line">    callbacks2[<span class="number">1</span>](),</span><br><span class="line">    callbacks2[<span class="number">2</span>](),</span><br><span class="line">]); <span class="comment">// 0 2 4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 立即执行函数表达式（IIFE）</span></span><br><span class="line">;((<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"foo()===1"</span>, foo() === <span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line">    ;((<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"foo()===2"</span>, foo() === <span class="number">2</span>);<span class="comment">// true</span></span><br><span class="line">    &#125;)());</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"foo()===1"</span>, foo() === <span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line">&#125;)())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 块级作用域 &#123; &#125;</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"foo()===1"</span>, foo() === <span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"foo()===2"</span>, foo() === <span class="number">2</span>); <span class="comment">// true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"foo()===1"</span>, foo() === <span class="number">1</span>); <span class="comment">// true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="块级作用域与函数声明"><a href="#块级作用域与函数声明" class="headerlink" title="块级作用域与函数声明"></a>块级作用域与函数声明</h3><p>ES6 引入了块级作用域，明确允许在块级作用域之中声明函数。ES6 规定，块级作用域之中，函数声明语句的行为类似于let，在块级作用域之外不可引用。但是，考虑到环境导致的行为差异太大，应该避免在块级作用域内声明函数。如果确实需要，也应该写成函数表达式，而不是函数声明语句。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://charlotte007.github.io/blog/blog/2018/03/17/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -407,7 +667,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -420,7 +680,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blog/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
