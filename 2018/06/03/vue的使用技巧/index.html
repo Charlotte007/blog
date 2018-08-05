@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="TigerZ的个人技术博客">
 <meta property="og:description" content="开发中配置相关的问题 问题一：如何使用 sass?  12# 添加 sass-loader ， node-sass依赖npm install sass-loader node-sass --save-dev 123456789// webpack.base.config.jsmodule: &amp;#123;    rules: [        &amp;#123;            test: /\.s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-06T13:54:48.079Z">
+<meta property="og:updated_time" content="2018-08-05T07:10:22.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue的实战（一）">
 <meta name="twitter:description" content="开发中配置相关的问题 问题一：如何使用 sass?  12# 添加 sass-loader ， node-sass依赖npm install sass-loader node-sass --save-dev 123456789// webpack.base.config.jsmodule: &amp;#123;    rules: [        &amp;#123;            test: /\.s">
@@ -325,7 +325,10 @@
 </ul>
 <p><code>assets中静态文件</code>：assets下的静态文件会视作模块依赖，可以使用相对路径（同样也可以使用绝对路径，只不过不做处理），webpack会处理好路径问题；这个不仅仅可以放在assets下，只要放在src目录下即可；文件引入方式：相对路径，绝对路径，require(‘./relative/path/to/file.jpg’)</p>
 <p><code>static中静态文件</code>：Webpack根本不处理文件：它们直接被复制到最终目的地，并且具有相同的文件名（打包后不做改变）;必须使用绝对路径来引用这些文件;</p>
-<h3 id="本地调试如何解决跨域的问题"><a href="#本地调试如何解决跨域的问题" class="headerlink" title="本地调试如何解决跨域的问题"></a>本地调试如何解决跨域的问题</h3><ul>
+<ul>
+<li><a href="https://juejin.im/post/59fa9257f265da43062a1b0e" target="_blank" rel="noopener">vue全家桶开发环境以及上线环境报错处理方法，大全</a></li>
+</ul>
+<h3 id="本地调试如何解决跨域的问题-待细节完善"><a href="#本地调试如何解决跨域的问题-待细节完善" class="headerlink" title="本地调试如何解决跨域的问题 [待细节完善]"></a>本地调试如何解决跨域的问题 [待细节完善]</h3><ul>
 <li><p>使用jspnp;（注意jsonp的缺点：jsonp只支持get请求而不支持post请求）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># github上有开源的项目直接使用</span></span><br><span class="line">npm install jsonp</span><br></pre></td></tr></table></figure>
 </li>
@@ -338,16 +341,21 @@
 </li>
 </ul>
 <h3 id="vue中操作DOM对象与获取当前DOM节点上绑定的vue对象"><a href="#vue中操作DOM对象与获取当前DOM节点上绑定的vue对象" class="headerlink" title="vue中操作DOM对象与获取当前DOM节点上绑定的vue对象"></a>vue中操作DOM对象与获取当前DOM节点上绑定的vue对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取DOM对象</span></span><br><span class="line"><span class="comment">// DOM: &lt;h2 ref='foo'&gt;我是ref的值&lt;/h2&gt;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.$refs.foo.innerHTML);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//  获取当前DOM节点上绑定的vue对象</span></span><br><span class="line"><span class="keyword">const</span> clipboard = <span class="keyword">new</span> Clipboard(<span class="string">'.anticons-list li'</span>);</span><br><span class="line">clipboard.on(<span class="string">'success'</span>, (e) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> item = e.trigger.__vfrag__.scope.item;</span><br><span class="line">  item.justCopied = <span class="literal">true</span></span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    item.justCopied = <span class="literal">false</span></span><br><span class="line">  &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="动态组件和异步组件的使用"><a href="#动态组件和异步组件的使用" class="headerlink" title="动态组件和异步组件的使用"></a>动态组件和异步组件的使用</h3><h3 id="vue之间的通信"><a href="#vue之间的通信" class="headerlink" title="vue之间的通信"></a>vue之间的通信</h3><ul>
-<li><p>父级向子级通讯</p>
+<h3 id="封装组件的几种方式"><a href="#封装组件的几种方式" class="headerlink" title="封装组件的几种方式"></a>封装组件的几种方式</h3><h3 id="动态组件和异步组件的使用"><a href="#动态组件和异步组件的使用" class="headerlink" title="动态组件和异步组件的使用"></a>动态组件和异步组件的使用</h3><h3 id="vue之间的通信"><a href="#vue之间的通信" class="headerlink" title="vue之间的通信"></a>vue之间的通信</h3><ul>
+<li><p>父级向子级通讯(props)<br>  parent: data.ParentMsg</p>
+<pre><code>调用： &lt;v-child :childProps=&apos;ParentMsg&apos;&gt;&lt;/v-child&gt;
+</code></pre><p>  child: props[childProps]<br>  <code>组成</code>：属性(child.props),子组件调用(v-child),属性绑定（v-bind:child.props = ParentMsg)</p>
 </li>
-<li><p>子级向父级通讯</p>
+<li><p>子级向父级通讯<br>  parent: methods.changeParentData();</p>
+<pre><code>parent调用： &lt;v-child v-on:childEmit = &apos;changeParentData&apos;&gt;
+child组件: &lt;template&gt;&lt;div&gt;&lt;botton @click=&quot;childFired&quot;&gt;&lt;/botton&gt;&lt;/div&gt;&lt;/template&gt;
+</code></pre><p>  child: methods.childFired(() =&gt; { this.$emit(‘childEmit’,childArguments)})<br>  <code>组成</code>：事件触发器,并触发emit(child-event)，监听器(parent-listener)，执行方法（parent-function）</p>
 </li>
-<li><p>兄弟组件之间的通信 </p>
+<li><p>兄弟组件之间的通信<br>  全局的Vue对象上 监听 emit事件<br>  <a href="https://vuex.vuejs.org/zh/guide/" target="_blank" rel="noopener">vuex 状态树管理</a></p>
+<p>  <a href="https://github.com/yangmingshan/vue-bus" target="_blank" rel="noopener">vue-bus:github</a><br>  <a href="https://juejin.im/post/5acd0c8a6fb9a028da7cdfaf" target="_blank" rel="noopener">如何实现Event Bus</a></p>
 </li>
 </ul>
-<p><a href="https://juejin.im/post/5acd0c8a6fb9a028da7cdfaf" target="_blank" rel="noopener">如何实现Event Bus</a></p>
-<h3 id="项目的构建结构"><a href="#项目的构建结构" class="headerlink" title="项目的构建结构"></a>项目的构建结构</h3><ul>
+<h3 id="项目的构建结构-参考-掘金"><a href="#项目的构建结构-参考-掘金" class="headerlink" title="项目的构建结构  参考:掘金"></a>项目的构建结构  <a href="https://juejin.im/post/5b29c3bde51d45588d4d7110" target="_blank" rel="noopener">参考:掘金</a></h3><ul>
 <li><p>vue组件划分</p>
 </li>
 <li><p>vue-router划分</p>
@@ -355,7 +363,7 @@
 <li><p>vuex的划分</p>
 </li>
 </ul>
-<p>参考链接：<br><a href="https://www.jianshu.com/p/e555bc60b96b" target="_blank" rel="noopener">vue 实战各种小技巧</a><br><a href="https://juejin.im/post/5b1230c1f265da6e603933ad" target="_blank" rel="noopener">你或许不知道Vue的这些小技巧</a><br><a href="https://juejin.im/post/5abba68cf265da239c7b6bdc" target="_blank" rel="noopener">Webpack + Vue，部署时减少包体积的几种方法</a><br><a href="https://juejin.im/post/59fa9257f265da43062a1b0e" target="_blank" rel="noopener">Vue 脱坑记</a></p>
+<h3 id="vue插件的封装ss"><a href="#vue插件的封装ss" class="headerlink" title="vue插件的封装ss"></a>vue插件的封装ss</h3><p>参考链接：<br><a href="https://www.jianshu.com/p/e555bc60b96b" target="_blank" rel="noopener">vue 实战各种小技巧</a><br><a href="https://juejin.im/post/5b1230c1f265da6e603933ad" target="_blank" rel="noopener">你或许不知道Vue的这些小技巧</a><br><a href="https://juejin.im/post/5abba68cf265da239c7b6bdc" target="_blank" rel="noopener">Webpack + Vue，部署时减少包体积的几种方法</a><br><a href="https://juejin.im/post/59fa9257f265da43062a1b0e" target="_blank" rel="noopener">Vue 脱坑记</a></p>
 
       
     </div>
@@ -475,7 +483,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -521,7 +529,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#开发中配置相关的问题"><span class="nav-number">1.</span> <span class="nav-text">开发中配置相关的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地调试如何解决跨域的问题"><span class="nav-number">2.</span> <span class="nav-text">本地调试如何解决跨域的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue中操作DOM对象与获取当前DOM节点上绑定的vue对象"><span class="nav-number">3.</span> <span class="nav-text">vue中操作DOM对象与获取当前DOM节点上绑定的vue对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态组件和异步组件的使用"><span class="nav-number">4.</span> <span class="nav-text">动态组件和异步组件的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue之间的通信"><span class="nav-number">5.</span> <span class="nav-text">vue之间的通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目的构建结构"><span class="nav-number">6.</span> <span class="nav-text">项目的构建结构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#开发中配置相关的问题"><span class="nav-number">1.</span> <span class="nav-text">开发中配置相关的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地调试如何解决跨域的问题-待细节完善"><span class="nav-number">2.</span> <span class="nav-text">本地调试如何解决跨域的问题 [待细节完善]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue中操作DOM对象与获取当前DOM节点上绑定的vue对象"><span class="nav-number">3.</span> <span class="nav-text">vue中操作DOM对象与获取当前DOM节点上绑定的vue对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装组件的几种方式"><span class="nav-number">4.</span> <span class="nav-text">封装组件的几种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态组件和异步组件的使用"><span class="nav-number">5.</span> <span class="nav-text">动态组件和异步组件的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue之间的通信"><span class="nav-number">6.</span> <span class="nav-text">vue之间的通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目的构建结构-参考-掘金"><span class="nav-number">7.</span> <span class="nav-text">项目的构建结构  参考:掘金</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue插件的封装ss"><span class="nav-number">8.</span> <span class="nav-text">vue插件的封装ss</span></a></li></ol></div>
             
 
           </div>
