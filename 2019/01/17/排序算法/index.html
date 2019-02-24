@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言排序是一个非常经典的问题，它以一定的顺序对一个数组（或一个列表）中的项进行重新排序（可以进行比较，例如整数，浮点数，字符串等）（增加，非递减，递减， 增加，词典等）。有许多不同的排序算法，每个都有其自身的优点和局限性。 基本应用当对数组 A 排序时，涉及 A 的许多问题变得简单：  在数组 A 中搜索特定值 v， 查找（静态）数组 A 中的最小/最大/第 k 个最小/最大值， 测试唯一性并删除">
+<meta property="og:type" content="article">
+<meta property="og:title" content="排序算法">
+<meta property="og:url" content="https://charlotte007.github.io/blog/2019/01/17/排序算法/index.html">
+<meta property="og:site_name" content="TigerZ的个人技术博客">
+<meta property="og:description" content="前言排序是一个非常经典的问题，它以一定的顺序对一个数组（或一个列表）中的项进行重新排序（可以进行比较，例如整数，浮点数，字符串等）（增加，非递减，递减， 增加，词典等）。有许多不同的排序算法，每个都有其自身的优点和局限性。 基本应用当对数组 A 排序时，涉及 A 的许多问题变得简单：  在数组 A 中搜索特定值 v， 查找（静态）数组 A 中的最小/最大/第 k 个最小/最大值， 测试唯一性并删除">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://charlotte007.github.io/blog/2019/01/17/排序算法/selectSort.gif">
+<meta property="og:image" content="https://charlotte007.github.io/blog/2019/01/17/排序算法/inserSort.gif">
+<meta property="og:updated_time" content="2019-02-24T15:32:31.929Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="排序算法">
+<meta name="twitter:description" content="前言排序是一个非常经典的问题，它以一定的顺序对一个数组（或一个列表）中的项进行重新排序（可以进行比较，例如整数，浮点数，字符串等）（增加，非递减，递减， 增加，词典等）。有许多不同的排序算法，每个都有其自身的优点和局限性。 基本应用当对数组 A 排序时，涉及 A 的许多问题变得简单：  在数组 A 中搜索特定值 v， 查找（静态）数组 A 中的最小/最大/第 k 个最小/最大值， 测试唯一性并删除">
+<meta name="twitter:image" content="https://charlotte007.github.io/blog/2019/01/17/排序算法/selectSort.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://charlotte007.github.io/blog/2019/01/17/排序算法/"/>
+
+
+
+
+
+  <title>排序算法 | TigerZ的个人技术博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TigerZ的个人技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://charlotte007.github.io/blog/blog/2019/01/17/排序算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TigerZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TigerZ的个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">排序算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T23:30:51+08:00">
+                2019-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>排序是一个非常经典的问题，它以一定的顺序对一个数组（或一个列表）中的项进行重新排序（可以进行比较，例如整数，浮点数，字符串等）（增加，非递减，递减， 增加，词典等）。<br>有许多不同的排序算法，每个都有其自身的优点和局限性。</p>
+<h3 id="基本应用"><a href="#基本应用" class="headerlink" title="基本应用"></a>基本应用</h3><p>当对数组 A 排序时，涉及 A 的许多问题变得简单：</p>
+<ul>
+<li>在数组 A 中搜索特定值 v，</li>
+<li>查找（静态）数组 A 中的最小/最大/第 k 个最小/最大值，</li>
+<li>测试唯一性并删除数组 A 中的重复项，</li>
+<li>计算特定值 v 在数组 A 中出现多少次</li>
+<li>设置数组 A 和另一个排序数组 B 之间的交集/联合，</li>
+<li>寻找一个目标对 x∈A 和 y∈A，使得 x + y 等于目标 z 等。</li>
+</ul>
+<h3 id="有趣的计算机科学思想"><a href="#有趣的计算机科学思想" class="headerlink" title="有趣的计算机科学思想"></a>有趣的计算机科学思想</h3><ul>
+<li>比较与非比较策略，(比较: 选择排序，插入排序，冒泡；非比较：计数排序，基数排序)，</li>
+<li>迭代与递归实现，</li>
+<li>分而治之的思想，</li>
+<li>最佳/最差/平均情况时间复杂性分析，主要集中在 数据存储方式（数组，链表，树），数据量的大小，数据的有序程度，数据的重复性，</li>
+<li>随机算法等，使用随机算法，均摊算法的复杂度，减少最差的情况出现</li>
+</ul>
+<h3 id="需要提前了解的几个概念"><a href="#需要提前了解的几个概念" class="headerlink" title="需要提前了解的几个概念"></a>需要提前了解的几个概念</h3><ul>
+<li>算法复杂度: 时间复杂度，空间复杂度</li>
+<li>算法的稳定性: 排序完成后时候影响相同数据原有的相对位置，比如班级成绩数组默认已字母A-Z排序，排序后相同成绩的姓名排序不发生相对位置变化即为稳定排序</li>
+<li>数据结构: 数组，链表，树</li>
+</ul>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h4><p>思路： 找到第一小，第二小，第三小 ….第n小，按顺序排列</p>
+<ul>
+<li>将第一个<code>没有排序</code>的元素设为最小值（或者最大值）</li>
+<li>遍历没有排序的元素，找到最小值（或者最大值）</li>
+<li>将最小值（或者最大值）和<code>第一个没有排序的元素</code>进行位置交换</li>
+<li>重复上述步骤（length-1）次</li>
+</ul>
+<h4 id="动画演示"><a href="#动画演示" class="headerlink" title="动画演示"></a>动画演示</h4><img src="/blog/2019/01/17/排序算法/selectSort.gif" title="[选择排序]">
+<h4 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   时间复杂度： O(n^2) </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = arr.length;</span><br><span class="line">    <span class="keyword">let</span> perMinIndex, temp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123; <span class="comment">// len-1 ,最后一位默认最大值</span></span><br><span class="line">        perMinIndex = i;</span><br><span class="line">        <span class="comment">// 找到未排序中最小值, </span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123; <span class="comment">// j=i+1,第二元素的起始位置</span></span><br><span class="line">            <span class="keyword">if</span> (arr[j] &lt; arr[perMinIndex]) &#123;</span><br><span class="line">                perMinIndex = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 交换</span></span><br><span class="line">        temp = arr[i];</span><br><span class="line">        arr[i] = arr[perMinIndex];</span><br><span class="line">        arr[perMinIndex] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
+<li><strong>算法复杂度</strong>：最佳情况 T(n) = O(n^2)， 最差情况T(n) = O(n^2) ，平均情况 T(n) = O(n^2) 时间复杂度一成不变，不利于处理大批量数据</li>
+<li><strong>稳定性</strong>： 算法实现中，无论数值是否相等，都会进行位置交换，影响原有数据的排序，算法不稳定</li>
+</ul>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="算法步骤-1"><a href="#算法步骤-1" class="headerlink" title="算法步骤"></a>算法步骤</h4><p>思路：类似生活中整理扑克牌顺序</p>
+<ul>
+<li>将第一个元素标记为已排序，</li>
+<li>遍历每个没有排序过的元素，</li>
+<li>提取元素X，将已排序的数据，<code>从后向前</code>扫描,大于最后一位，将已排序的数据右移，</li>
+<li>从后向前扫描，找到相应位置插入</li>
+</ul>
+<h4 id="动画演示-1"><a href="#动画演示-1" class="headerlink" title="动画演示"></a>动画演示</h4><img src="/blog/2019/01/17/排序算法/inserSort.gif" title="[插入排序]">
+<h4 id="参考代码-1"><a href="#参考代码-1" class="headerlink" title="参考代码"></a>参考代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    时间复杂度： O(n^2) </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inserSort_01</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> temp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>, len = arr.length; i &lt; len; i++) &#123; <span class="comment">// 从 arr[1]开始</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = i; j &gt; <span class="number">0</span>; j--) &#123; <span class="comment">// 需要比较项 j = i; j&gt;0</span></span><br><span class="line">            <span class="keyword">if</span> (arr[j] &lt; arr[j - <span class="number">1</span>]) &#123; <span class="comment">// 交换</span></span><br><span class="line">                temp = arr[j - <span class="number">1</span>];</span><br><span class="line">                arr[j - <span class="number">1</span>] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>; <span class="comment">// 无需交换，提前终止</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 优化1：inserSort_01中存在swap交换过程，需要开辟新空间；需要优化使得 可以在数组中完成交换；</span></span><br><span class="line"><span class="comment">// 思路：缓存当前 排序项arr[i]，找到 排序项的正确位置 [j]； arr[j~i-1] -&gt; arr[j+1~i] 右移空出 k的位置  </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inserSort_02</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> curItem, <span class="comment">// 复制存储当前待排序元素  </span></span><br><span class="line">        j; <span class="comment">// 当前待排序元素 应插入的顺序</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>, len = arr.length; i &lt; len; i++) &#123; <span class="comment">// 从 arr[1]开始</span></span><br><span class="line">        curItem = arr[i];</span><br><span class="line">        <span class="comment">// 此段可以优化简写</span></span><br><span class="line">        <span class="keyword">for</span> (j = i; j &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j - <span class="number">1</span>] &gt; curItem) &#123;<span class="comment">// 向右偏移一位，覆盖后一位的值</span></span><br><span class="line">                arr[j] = arr[j - <span class="number">1</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="comment">//  ## 简化   </span></span><br><span class="line">    <span class="comment">//  for (j = i; j &gt; 0 &amp;&amp; arr[j - 1] &gt; curItem; j--) &#123;</span></span><br><span class="line">    <span class="comment">//      arr[j] = arr[j - 1];</span></span><br><span class="line">    <span class="comment">//  &#125;</span></span><br><span class="line">        <span class="comment">// 还原到正确位置</span></span><br><span class="line">        arr[j] = curItem;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 优化2： 查找正确的插入位置时，使用二分法查找</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binaryInsertionSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> curItem,    <span class="comment">// 复制存储当前待排序元素 </span></span><br><span class="line">        left,       <span class="comment">// 已排序 左边界, </span></span><br><span class="line">        right,      <span class="comment">// 已排序 右边界  </span></span><br><span class="line">        middle;     <span class="comment">// 已排序 中点 </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>, len = arr.length; i &lt; len; i++) &#123; <span class="comment">// 从 arr[1]开始</span></span><br><span class="line">        curItem = arr[i];</span><br><span class="line">        left = <span class="number">0</span>; <span class="comment">// 每轮 default : 0;</span></span><br><span class="line">        right = i - <span class="number">1</span>; <span class="comment">// 已排序右边界</span></span><br><span class="line">        <span class="comment">// 找到 当前待排序元素 应插入的顺序</span></span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">            middle = <span class="built_in">parseInt</span>((left + right) / <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (curItem &gt; arr[middle]) &#123; <span class="comment">// 中右</span></span><br><span class="line">                left = middle + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// 中左</span></span><br><span class="line">                right = middle - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 对数组进行偏移，数组内完成交换</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = i; j &gt;= left; j--) &#123;</span><br><span class="line">            arr[j] = arr[j - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        arr[left] = curItem;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="算法分析-1"><a href="#算法分析-1" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
+<li><strong>算法复杂度</strong>：最佳情况 T(n) = O(n) (<code>有序数组</code>)， 最差情况T(n) = O(n^2) ，平均情况 T(n) = O(n^2)</li>
+<li>插入排序对于近乎有序数组的速度优势，甚至大于O(nlogn)的时间复杂度</li>
+<li>插入排序可以作为一个排序的节点去优化算法</li>
+<li><strong>稳定性</strong>：等值未发生交换，稳定</li>
+</ul>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    时间复杂度： O(n^2) </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>归并排序的思路：</p>
+<ul>
+<li>现将数组分为 左右两个数组分别进行排序；</li>
+<li>左右两个数组，在基础上在进行分组，直到数组分为 每个元素成为一组；</li>
+<li>最后一层，层层向上归并排序；（左边一个有序的数组，右边一个有序数组，如何合并为一个有序的数组）；</li>
+<li>特点：数组层层均分需要 logN次，左右数组数量均衡（相比较其他logN算法）；</li>
+<li>缺点：需要开启临时空间辅助完成归并过程；<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ### 归并排序 时间复杂度  O(nlogn)  核心：二分法缩减层级</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>归并排序算法的优化：</p>
+<ul>
+<li>对于递归到底的优化，对于数组已经有序的，可以跳过归并；</li>
+<li>达到小数组，使用插入排序代替归并排序；（基于两个原因：1).2)；</li>
+<li>数组元素越少，数组有序的可能性越高，插入排序有可能达到 O(n)；</li>
+<li>O(n^2) 和 O(nlogn)算法中N在偏小时，N 对于时间复杂度的有决定性的影响；<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ###  归并排序优化</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="归并排序（自底向上的归并-Bottom-To-Up）"><a href="#归并排序（自底向上的归并-Bottom-To-Up）" class="headerlink" title="归并排序（自底向上的归并 Bottom To Up）"></a>归并排序（自底向上的归并 Bottom To Up）</h3><ul>
+<li>比较：统计学意义上；自顶向下的归并速度是快于自底向上的归并排序的，实际上两者相差不大；</li>
+<li>特点：自底向上的归并减少使用 数组的下标索引，适用于链表数组的排序；<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSortBotUp</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序的思路：</p>
+<ul>
+<li>在当前数组中选择一个元素作为 参考点，默认第一个；</li>
+<li>核心： 把参考点放在，数据正确排列后所在的位置；这个位置作为划分数组的分界，左边数据&lt;= 参考点&lt;=右边数据；</li>
+<li>如何把参考点放在正确的位置上？<ul>
+<li>变量：  l(参考点索引) j(分界点索引，也是最后参考归位) i(右边界位置，也是当前考察的位置); v为默认首位值，e为 i的值</li>
+<li>条件：  arr[l+1]–arr[j]  &lt; v &lt; arr[j+1] – arr[r-1] </li>
+<li>变化1：  arr[r] &gt; v   ==&gt; i++</li>
+<li>变化2：  arr[r] &lt; v   ==&gt; swap(arr[r],arr[j+1]) &amp; j++  i++</li>
+<li>完成：  遍历完成后 swap(arr[l],arr[j])<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 快速排序   递归</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">__quickSort</span>(<span class="params">arr,l,r</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>快速排序的局限性以及优化1：</p>
+<ul>
+<li>缺点1：处理近乎有序的数组进行排序，对于有序而言，会导致排序分组的数量变多；会使得分组的次数超过 logN层；最差的为N层；退化为O(n^2)；</li>
+<li>优化1： 理想中最好找到当前数组的中间值可以减少分层；实际实现时，可以通过随机参考点的方式，弱化有序带来的分层影响；时间复杂度的期望值为O(nlogn)</li>
+</ul>
+<p>快速排序的局限性以及优化2：</p>
+<ul>
+<li>缺点2： 处理数组中存在大量的重复元素，会导致快速排序中，左右数组划分基本平衡，增加分组的次数；趋向于N层；退化为 O(n^2);</li>
+<li>优化2： 平衡重复元素在左右分组的个数；  </li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/08/05/css基础提升/" rel="next" title="css基础提升">
+                <i class="fa fa-chevron-left"></i> css基础提升
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">TigerZ</p>
+              <p class="site-description motion-element" itemprop="description">不可描述</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本应用"><span class="nav-number">2.</span> <span class="nav-text">基本应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有趣的计算机科学思想"><span class="nav-number">3.</span> <span class="nav-text">有趣的计算机科学思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要提前了解的几个概念"><span class="nav-number">4.</span> <span class="nav-text">需要提前了解的几个概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择排序"><span class="nav-number">5.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法步骤"><span class="nav-number">5.1.</span> <span class="nav-text">算法步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动画演示"><span class="nav-number">5.2.</span> <span class="nav-text">动画演示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考代码"><span class="nav-number">5.3.</span> <span class="nav-text">参考代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法分析"><span class="nav-number">5.4.</span> <span class="nav-text">算法分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入排序"><span class="nav-number">6.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法步骤-1"><span class="nav-number">6.1.</span> <span class="nav-text">算法步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动画演示-1"><span class="nav-number">6.2.</span> <span class="nav-text">动画演示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考代码-1"><span class="nav-number">6.3.</span> <span class="nav-text">参考代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法分析-1"><span class="nav-number">6.4.</span> <span class="nav-text">算法分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序"><span class="nav-number">7.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序"><span class="nav-number">8.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序（自底向上的归并-Bottom-To-Up）"><span class="nav-number">9.</span> <span class="nav-text">归并排序（自底向上的归并 Bottom To Up）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序"><span class="nav-number">10.</span> <span class="nav-text">快速排序</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TigerZ</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
