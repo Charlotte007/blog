@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="TigerZ的个人技术博客">
 <meta property="og:description" content="单例模式的定义是：·保证一个类仅有一个实例，并提供一个访问它的全局访问点。 1234567891011/** * 单例模式的逻辑管理： * @param &amp;#123;any&amp;#125; fn  创建实例的函数；@returns 实例对象 * @returns         实例对象 */var getSingle = function( fn )&amp;#123;    var result;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-28T13:57:55.983Z">
+<meta property="og:updated_time" content="2019-03-11T14:47:38.744Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例模式">
 <meta name="twitter:description" content="单例模式的定义是：·保证一个类仅有一个实例，并提供一个访问它的全局访问点。 1234567891011/** * 单例模式的逻辑管理： * @param &amp;#123;any&amp;#125; fn  创建实例的函数；@returns 实例对象 * @returns         实例对象 */var getSingle = function( fn )&amp;#123;    var result;">
@@ -311,7 +311,7 @@
 
       
         <p><strong>单例模式的定义是：·<code>保证一个类仅有一个实例，并提供一个访问它的全局访问点。</code></strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 单例模式的逻辑管理：</span></span><br><span class="line"><span class="comment"> * @param &#123;any&#125; fn  创建实例的函数；@returns 实例对象</span></span><br><span class="line"><span class="comment"> * @returns         实例对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> getSingle = <span class="function"><span class="keyword">function</span>(<span class="params"> fn </span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> result || ( result = fn .apply(<span class="keyword">this</span>, <span class="built_in">arguments</span> ) );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 单例模式的逻辑管理：</span></span><br><span class="line"><span class="comment"> * @param &#123;any&#125; fn  创建实例的函数；@returns 实例对象</span></span><br><span class="line"><span class="comment"> * @returns         实例对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> getSingle = <span class="function"><span class="keyword">function</span>(<span class="params"> fn </span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> result || ( result = fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span> ) );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -421,7 +421,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
